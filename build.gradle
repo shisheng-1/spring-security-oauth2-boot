@@ -38,3 +38,10 @@ subprojects {
         }
 	apply plugin: 'io.spring.javaformat'
 }
+
+allprojects {
+    tasks.withType(Test).configureEach {
+   	maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+        forkEvery = 100
+    }
+}
